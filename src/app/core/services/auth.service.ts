@@ -5,19 +5,8 @@ import {SupabaseService} from 'src/app/core/services/supabase.service';
 import {ConfigService} from "./config.service";
 import {Router} from "@angular/router";
 import {map} from "rxjs/operators";
+import {Profile} from "src/app/core/models/user.model";
 
-export interface Profile {
-  id?: string;
-  username: string;
-  email?: string;
-  birthdate?: Date;
-  password?: string;
-  first_name: string;
-  last_name: string;
-  avatar_url?: string;
-  bg_url?: string;
-  updated_at?: Date;
-}
 @Injectable({
   providedIn: 'root'
 })
