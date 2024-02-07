@@ -1,26 +1,49 @@
-<nav class="bg-white shadow-md">
+<nav class="shadow-lg bg-white">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="relative flex items-center justify-between h-16">
-      <div class="flex-1 flex items-center justify-between">
-        <div class="flex-shrink-0 flex items-center">
-          <img class="block lg:hidden h-8 w-auto" [src]="this.logo" alt="TP Engineering" height="70"
-               width="253">
-        </div>
-        <div class="hidden sm:block sm:ml-6">
-          <div class="flex space-x-4">
-            <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
-            <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About Us</a>
-            <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Careers</a>
-            <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">News</a>
-            <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contacts</a>
+    <div class="relative flex items-center h-16">
+      <!-- Logo for large screens -->
+      <div class="absolute left-0 inset-y-0 flex items-center">
+        <img class="hidden lg:block h-8 w-auto" [src]="logo" alt="TP Engineering" height="70" width="253">
+      </div>
+
+      <!-- Centered navigation links with dropdown for 'About Us' -->
+      <div class="flex-1 flex justify-center items-center">
+        <div class="flex space-x-4">
+          <!-- Repeat this block for each navigation link -->
+          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+
+          <!-- 'About Us' dropdown -->
+          <div class="group inline-block relative">
+            <button class="text-gray-900 py-2 px-3 rounded-md text-small font-medium inline-flex items-center">
+              <span class="mr-1">About Us</span>
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
+              </svg>
+            </button>
+            <ul class="absolute hidden text-gray-700 pt-1 group-hover:block">
+              <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Company</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Company structure</a></li>
+            </ul>
           </div>
+
+          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Careers</a>
+          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">News</a>
+          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contacts</a>
+          <!-- ... other navigation links ... -->
         </div>
       </div>
+      <!-- Language Dropdown -->
       <div class="ml-3 relative">
-        <div class="flex items-center h-5">
-          <img src="/path-to-your/flag.png" alt="English" class="h-4 w-6">
-          <span class="ml-2 text-gray-900 hover:text-gray-700 cursor-pointer text-sm font-medium">English</span>
+        <div (click)="showLanguages = !showLanguages" class="flex items-center cursor-pointer">
+          <img [src]="currentLanguageFlag" [alt]="currentLanguageLabel" class="h-4 w-6">
+          <span class="ml-2 text-gray-100 hover:text-gray-200 text-sm font-medium">{{ currentLanguageLabel }}</span>
+          <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
+          </svg>
+        </div>
+        <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" *ngIf="showLanguages">
+          <a *ngFor="let lang of languages" (click)="setCurrentLanguage(lang.code); $event.preventDefault()" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ lang.label }}</a>
         </div>
       </div>
     </div>
