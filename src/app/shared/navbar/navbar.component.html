@@ -1,49 +1,90 @@
-<nav class="shadow-lg bg-white">
-  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="relative flex items-center h-16">
-      <!-- Logo for large screens -->
-      <div class="absolute left-0 inset-y-0 flex items-center">
-        <img class="hidden lg:block h-8 w-auto" [src]="logo" alt="TP Engineering" height="70" width="253">
+<!-- Enhanced Navigation Bar -->
+<nav class="relative bg-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16 md:space-x-10">
+
+      <!-- Logo - Left aligned -->
+      <div class="flex justify-start lg:w-0 lg:flex-1">
+        <a href="/">
+          <img [src]="this.logo" alt="TP Engineering" class="h-12 w-auto">
+        </a>
       </div>
 
-      <!-- Centered navigation links with dropdown for 'About Us' -->
-      <div class="flex-1 flex justify-center items-center">
-        <div class="flex space-x-4">
-          <!-- Repeat this block for each navigation link -->
-          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+      <!-- Mobile Menu Button -->
+      <div class="-mr-2 -my-2 md:hidden">
+        <button type="button" (click)="showMobileMenu()" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-600">
+          <!-- Mobile menu icon -->
+          <!-- Insert your SVG or Font Awesome Icon here -->
+        </button>
+      </div>
 
-          <!-- 'About Us' dropdown -->
-          <div class="group inline-block relative">
-            <button class="text-gray-900 py-2 px-3 rounded-md text-small font-medium inline-flex items-center">
-              <span class="mr-1">About Us</span>
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
-              </svg>
-            </button>
-            <ul class="absolute hidden text-gray-700 pt-1 group-hover:block">
-              <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Company</a></li>
-              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Company structure</a></li>
-            </ul>
+      <!-- Navigation Links - Centered -->
+      <div class="hidden md:flex justify-center items-center flex-1 space-x-4">
+        <a href="#" class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2">Home</a>
+
+        <!-- Services Dropdown -->
+        <div class="relative">
+          <button type="button" (click)="showServices()" class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2 flex items-center">
+            Services
+            <!-- Dropdown Icon -->
+            <svg class="fill-current h-5 w-5 ml-2 transition-transform transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div *ngIf="showServicesDropdown" class="absolute z-10 left-0 mt-3 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+            <!-- Dropdown links -->
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Asset Management</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Engineering Services</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Maintenance & Shutdown Services</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">IT Solutions</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Services</a>
           </div>
+        </div>
 
-          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Careers</a>
-          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">News</a>
-          <a href="#" class="text-gray-900 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contacts</a>
-          <!-- ... other navigation links ... -->
+
+        <!-- About us Dropdown -->
+        <div class="relative">
+          <button type="button" (click)="showAbout()" class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2 flex items-center">
+            About
+            <!-- Dropdown Icon -->
+            <svg class="fill-current h-5 w-5 ml-2 transition-transform transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div *ngIf="showAboutDropdown" class="absolute z-10 left-0 mt-3 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+            <!-- Dropdown links -->
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Company</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Company Structure</a>
+          </div>
         </div>
+
+        <!-- More Navigation Links -->
+        <a href="#" class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2">Careers</a>
+        <a href="#" class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2">News</a>
+        <a href="#" class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2">Contact</a>
       </div>
-      <!-- Language Dropdown -->
-      <div class="ml-3 relative">
-        <div (click)="showLanguages = !showLanguages" class="flex items-center cursor-pointer">
-          <img [src]="currentLanguageFlag" [alt]="currentLanguageLabel" class="h-4 w-6">
-          <span class="ml-2 text-gray-100 hover:text-gray-200 text-sm font-medium">{{ currentLanguageLabel }}</span>
-          <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
-          </svg>
-        </div>
-        <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" *ngIf="showLanguages">
-          <a *ngFor="let lang of languages" (click)="setCurrentLanguage(lang.code); $event.preventDefault()" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ lang.label }}</a>
+
+      <!-- Language Dropdown - Right aligned -->
+      <div class="relative lg:flex items-center justify-end lg:flex-1 lg:w-0">
+        <div class="relative" (click)="showLanguage()">
+          <button class="flex items-center cursor-pointer">
+            <img [src]="currentLanguageFlag" alt="Language" class="h-5 w-auto">
+            <span class="text-base font-medium text-gray-700 hover:text-indigo-600 px-4 py-2">{{ currentLanguageLabel }}</span>
+            <!-- Dropdown Icon -->
+            <svg class="fill-current h-5 w-5 ml-1 transition-transform transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M5.95 7.05a.5.5 0 01.7 0L10 10.3l3.35-3.25a.5.5 0 11.7.7l-3.5 3.5a.5.5 0 01-.7 0l-3.5-3.5a.5.5 0 010-.7z"/>
+            </svg>
+          </button>
+          <!-- Language Dropdown Content -->
+          <div class="absolute right-0 mt-2 w-40 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100" *ngIf="showLanguages">
+            <!-- Dropdown menu -->
+            <a *ngFor="let lang of languages" (click)="setCurrentLanguage(lang.code); $event.preventDefault()" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <img [src]="lang.flag" alt="Language" class="h-5 w-auto">
+              {{ lang.label }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
