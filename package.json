@@ -18,8 +18,11 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@ngneat/transloco": "^6.0.4",
+    "@ngx-translate/http-loader": "github:ngx-translate/http-loader",
     "@supabase/supabase-js": "^2.39.3",
     "flowbite": "^2.2.1",
+    "ngx-translate": "github:ngx-translate/core",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
